@@ -52,6 +52,13 @@ const config: HardhatUserConfig = {
               ? [process.env.DEVNET_PRIVKEY]
               : [],
     },
+    goerli: {
+      url: process.env.GOERLI_RPC || "",
+      accounts:
+          process.env.DEVNET_PRIVKEY !== undefined
+              ? [process.env.DEVNET_PRIVKEY]
+              : [],
+    },
     arbitrumOne: {
       url: process.env.ARBITRUM_ONE_RPC || "",
       accounts:
@@ -80,13 +87,27 @@ const config: HardhatUserConfig = {
               ? [process.env.DEVNET_PRIVKEY]
               : [],
     },
+    evmosMainnet: {
+      url: process.env.EVMOS_MAINNET_PRC || "",
+      accounts:
+          process.env.EVMOS_PRIVKEY !== undefined
+              ? [process.env.EVMOS_PRIVKEY]
+              : [],
+    },
+    evmosTestnet: {
+      url: process.env.EVMOS_TESTNET_PRC || "",
+      accounts:
+          process.env.EVMOS_PRIVKEY !== undefined
+              ? [process.env.EVMOS_PRIVKEY]
+              : [],
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
     currency: "USD",
   },
   etherscan: {
-    apiKey: process.env.POLYSCAN_API_KEY,
+    apiKey: process.env.ETHERSCAN_API_KEY,
   },
 };
 

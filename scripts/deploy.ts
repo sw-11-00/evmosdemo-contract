@@ -1,21 +1,23 @@
 import { ethers } from "hardhat";
+import {BigNumber} from "ethers";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime);
-  console.log(lock)
+  // const BellaToken = await ethers.getContractFactory("BellaToken");
+  // const bellaToken = await BellaToken.deploy(BigNumber.from("10000000000000000000000000"));
+  // console.log(bellaToken)
+  //
+  // await bellaToken.deployed();
+  //
+  // console.log("Deployed to:", bellaToken.address);
 
-  await lock.deployed();
+  const SDNFT = await ethers.getContractFactory("SDNFT");
+  const sdNFT = await SDNFT.deploy("StableDiffusionNFT", "SDNFT");
+  console.log(sdNFT)
 
-  console.log("Lock with 1 ETH deployed to:", lock.address);
+  await sdNFT.deployed();
 
-  let tx = await lock.write();
-  const receipt = await tx.wait();
-  console.log(receipt.logs)
+  console.log("Deployed to:", sdNFT.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
